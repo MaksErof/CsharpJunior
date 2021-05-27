@@ -13,13 +13,13 @@ namespace endless_cycles
             string goingCycles;                                                                    
             for (int i = 1; ; i++ )
             {
-                Console.WriteLine("Для продолжения цикла введите 1, для выхода 2");
+                Console.WriteLine("Для продолжения цикла введите go, для выхода exit");
                 goingCycles = Console.ReadLine();
-                if (goingCycles == "1")
+                if (goingCycles == "go")
                 {
                     Console.WriteLine(i + " цикл");
                 }
-                else if (goingCycles == "2")
+                else if (goingCycles == "exit")
                 {
                     break;
                     
