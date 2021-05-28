@@ -11,21 +11,19 @@ namespace endless_cycles
         static void Main(string[] args)
         {
             string goingCycles;                                                                    
-            for (int i = 1; ; i++ )
+            for (int numberCycles = 1; ; numberCycles++ )
             {
                 Console.WriteLine("Для продолжения цикла введите go, для выхода exit");
                 goingCycles = Console.ReadLine();
+
                 if (goingCycles == "go")
                 {
-                    Console.WriteLine(i + " цикл");
+                    Console.WriteLine(numberCycles + " цикл");
                 }
-                else if (goingCycles == "exit")
+                else 
                 {
-                    break;
-                    
-                }
-                
-                                                                           
+                    break;                    
+                }                                                                                           
             }
             Console.WriteLine("Вы вышли из цикла");
             Console.ReadKey();

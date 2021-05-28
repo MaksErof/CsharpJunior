@@ -10,15 +10,20 @@ namespace endCycles
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("для выхода из  цикла 1, для продолжения 2");
+            Console.WriteLine("Для продолжения введите цикла go, для выхода exit");
             string goingCycles = Console.ReadLine();
             int numberCycles = 1;
+            Console.WriteLine(numberCycles + " цикл");
 
-            while (goingCycles == "2")
+            while (goingCycles == "go")
             {
-                Console.WriteLine("для выхода из  цикла 1, для продолжения 2");
+                Console.WriteLine("Для продолжения введите цикла go, для выхода exit");
                 goingCycles = Console.ReadLine();
                 numberCycles++;
+                if(goingCycles == "exit")
+                {
+                    break;
+                }
                 Console.WriteLine(numberCycles + " цикл");
             }
             Console.WriteLine("Вы вышли из цикла");
