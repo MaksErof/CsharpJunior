@@ -66,7 +66,6 @@ namespace menu
                         Console.WindowHeight = consoleSize;                        
                         consoleSize = Convert.ToInt32(Console.ReadLine());
                         Console.WindowWidth = consoleSize;
-
                         break;                        
                 }
                 Console.Clear();                
