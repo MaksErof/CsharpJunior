@@ -10,22 +10,20 @@ namespace menu
     {
         static void Main(string[] args)
         {
-            string changeConsole;
+            string consoleCreation = "to begin";
             string userLogin;
-            int enterPassword;
+            int userPassword;
             string consoleColor;
-            int consoleSizeHeight;
-            int consoleSizeWidth;            
-                        
-            Console.WriteLine("Для редактирования консоли введите go, для выхода exit");
-            changeConsole = Console.ReadLine();            
+            int consoleSize;
+            int consoleSizeWidth;
+            
 
-            while (changeConsole != "exit")
-            {
+            while (consoleCreation != "exit")
+            {                
                 Console.WriteLine("Для изменения ввода имени введите 1, для ввода пароля 2\nИзменить цвет консоли можно перейдя в меню 3\nМеню 4 позволит изменить размеры консоли\nДля выхода введите exit");
-                changeConsole = Console.ReadLine();
+                consoleCreation = Console.ReadLine();
                 
-                switch (changeConsole)
+                switch (consoleCreation)
                 {
                     case ("1"):
 
@@ -36,7 +34,7 @@ namespace menu
                     case ("2"):
 
                         Console.WriteLine("Введите пароль, пароль должен состоять из цифр");
-                        enterPassword = Convert.ToInt32(Console.ReadLine());
+                        userPassword = Convert.ToInt32(Console.ReadLine());
                         break;
 
                     case ("3"):
@@ -49,13 +47,11 @@ namespace menu
                             Console.BackgroundColor = ConsoleColor.Red;
                             break;
                         }
-
                         else if (consoleColor == "2")
                         {
                             Console.BackgroundColor = ConsoleColor.Yellow;
                             break;
                         }
-
                         else if (consoleColor == "3")
                         {
                             Console.BackgroundColor = ConsoleColor.Gray;                            
@@ -65,12 +61,11 @@ namespace menu
 
                     case ("4"):
 
-                        Console.WriteLine("Выберите ширину консоли");
-                        consoleSizeHeight = Convert.ToInt32(Console.ReadLine());
-                        Console.WindowHeight = consoleSizeHeight;
-                        Console.WriteLine("Выберите высоту консоли");
-                        consoleSizeWidth = Convert.ToInt32(Console.ReadLine());
-                        Console.WindowWidth = consoleSizeWidth;
+                        Console.WriteLine("Выберите высоту и ширину консоли");
+                        consoleSize = Convert.ToInt32(Console.ReadLine());
+                        Console.WindowHeight = consoleSize;                        
+                        consoleSize = Convert.ToInt32(Console.ReadLine());
+                        Console.WindowWidth = consoleSize;
 
                         break;                        
                 }
