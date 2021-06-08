@@ -10,10 +10,10 @@ namespace changeNumber
     {
         static void Main(string[] args)
         {
-            int numberToChange;
-            for (numberToChange = 7; numberToChange <= 98; numberToChange += 7)
+            int startNumber = 7;
+            for (int i = 0; i < 13; i++)
             {
-                Console.WriteLine(numberToChange);
+                Console.WriteLine(startNumber += 7);
             }
             Console.ReadKey();
         }
