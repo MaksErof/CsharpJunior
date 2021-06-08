@@ -10,18 +10,25 @@ namespace exchanger
     {
         static void Main(string[] args)
         {
-            double moneyUserRub = 300000;
-            float moneyUserUsd = 250f;
-            float moneyUserEur = 190f;
+            double moneyUserRub;
+            float moneyUserUsd;
+            float moneyUserEur;
 
             float euroToRubPrice = 89f;
             float usdToRubPrice = 73f;
-            float usdToEurPrice = 0.82f;            
+            float usdToEurPrice = 0.82f;
+            float amountOfTransfer;
+            string startConversion = "begin";
 
-            Console.WriteLine("На вашем счёте 300000 рублей, 250 долларов и 190 евро, для конвертации введите enter, для выхода exit");
-            string transfer = Console.ReadLine();
+            Console.WriteLine("Чтобы начать конвертацию введите сумму которой располагаете");
+            Console.WriteLine("Сумма в рублях");
+            moneyUserRub = Convert.ToSingle(Console.ReadLine());
+            Console.WriteLine("Сумму в долларах");
+            moneyUserUsd = Convert.ToSingle(Console.ReadLine());
+            Console.WriteLine("Сумма в евро");
+            moneyUserEur = Convert.ToSingle(Console.ReadLine());            
 
-            while (transfer != "exit")
+            while (startConversion != "exit")
             {
                 Console.WriteLine("Конвертёр валют, для выхода введите exit.");
                 Console.WriteLine("Какую валюту вы хотели бы конвертировать ?");
@@ -31,14 +38,13 @@ namespace exchanger
                 Console.WriteLine("Для обмена евро на доллары введите 4");
                 Console.WriteLine("Для хотите обменять доллары на рубли введите 5");
                 Console.WriteLine("Для обмена евро на рубли введите 6");
-                
+                startConversion = Console.ReadLine();
 
-                transfer = Console.ReadLine();
-                switch (transfer)
+                switch (startConversion)
                 {
                     case "1":
                         Console.WriteLine("Сколько рублей вы желаете обменять на доллары?");
-                        float amountOfTransfer = Convert.ToSingle(Console.ReadLine());
+                        amountOfTransfer = Convert.ToSingle(Console.ReadLine());
 
                         if (moneyUserRub > amountOfTransfer)
                         {
@@ -47,13 +53,11 @@ namespace exchanger
 
                             Console.Clear();
                             Console.WriteLine($"Вы обменяли {amountOfTransfer} рублей на {Math.Round(amountOfTransfer / usdToRubPrice, 2)} долларов");                            
-                            Console.WriteLine($"Теперь у вас {moneyUserRub} рублей, {Math.Round(moneyUserUsd, 2)} долларов и {Math.Round(moneyUserEur, 2)} евро.");
-                            Console.WriteLine();                            
+                            Console.WriteLine($"Теперь у вас {moneyUserRub} рублей, {Math.Round(moneyUserUsd, 2)} долларов и {Math.Round(moneyUserEur, 2)} евро.");                          
                         }
 
                         else
-                            Console.WriteLine("Недостаточное количество денег");
-                            Console.WriteLine();
+                            Console.WriteLine("Недостаточное количество денег");                           
                         break;
 
                     case "2":
@@ -69,7 +73,7 @@ namespace exchanger
                             Console.Clear();
                             Console.WriteLine($"Вы обменяли {amountOfTransfer} рублей на {Math.Round(amountOfTransfer / euroToRubPrice, 2)} евро");                            
                             Console.WriteLine($"Теперь у вас {moneyUserRub} рублей, {Math.Round(moneyUserUsd, 2)} долларов и {Math.Round(moneyUserEur, 2)} евро.");
-                            Console.WriteLine();
+                            
                         }
 
                         else
@@ -88,7 +92,6 @@ namespace exchanger
                             Console.Clear();
                             Console.WriteLine($"Вы обменяли {amountOfTransfer} долларов на {Math.Round(amountOfTransfer / usdToEurPrice, 2)} евро");                            
                             Console.WriteLine($"Теперь у вас {moneyUserRub} рублей, {Math.Round(moneyUserUsd, 2)} долларов и {Math.Round(moneyUserEur, 2)} евро.");
-                            Console.WriteLine();
                         }
 
                         else
@@ -107,7 +110,6 @@ namespace exchanger
                             Console.Clear();
                             Console.WriteLine($"Вы обменяли {amountOfTransfer} долларов на {Math.Round(amountOfTransfer / usdToEurPrice, 2)} евро");                            
                             Console.WriteLine($"Теперь у вас {moneyUserRub} рублей, {Math.Round(moneyUserUsd, 2)} долларов и {Math.Round(moneyUserEur, 2)} евро.");
-                            Console.WriteLine();
                         }
 
                         else
@@ -126,7 +128,6 @@ namespace exchanger
                             Console.Clear();
                             Console.WriteLine($"Вы обменяли {amountOfTransfer} долларов на {Math.Round(amountOfTransfer * usdToRubPrice, 4)} рублей");                            
                             Console.WriteLine($"Теперь у вас {moneyUserRub} рублей, {Math.Round(moneyUserUsd, 2)} долларов и {Math.Round(moneyUserEur, 2)} евро.");
-                            Console.WriteLine();
                         }
 
                         else
@@ -146,7 +147,6 @@ namespace exchanger
                             Console.Clear();
                             Console.WriteLine($"Вы обменяли {amountOfTransfer} евро на {Math.Round(amountOfTransfer * euroToRubPrice, 4)} рублей");                            
                             Console.WriteLine($"Теперь у вас {moneyUserRub} рублей, {moneyUserUsd} долларов и {Math.Round(moneyUserEur, 2)} евро.");
-                            Console.WriteLine();
                         }
 
                         else
