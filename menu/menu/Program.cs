@@ -10,7 +10,7 @@ namespace menu
     {
         static void Main(string[] args)
         {
-            string consoleCreation = "to begin";
+            string menuCreation = "to begin";
             string userLogin;
             int userPassword;
             string consoleColor;
@@ -18,12 +18,12 @@ namespace menu
             int consoleSizeWidth;
             
 
-            while (consoleCreation != "exit")
+            while (menuCreation != "exit")
             {                
                 Console.WriteLine("Для изменения ввода имени введите 1, для ввода пароля 2\nИзменить цвет консоли можно перейдя в меню 3\nМеню 4 позволит изменить размеры консоли\nДля выхода введите exit");
-                consoleCreation = Console.ReadLine();
+                menuCreation = Console.ReadLine();
                 
-                switch (consoleCreation)
+                switch (menuCreation)
                 {
                     case ("1"):
 
