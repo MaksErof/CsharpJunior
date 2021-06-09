@@ -29,12 +29,10 @@ namespace menu
                         Console.WriteLine("Введите логин, допускаются английский и русский ввод");
                         userLogin = Console.ReadLine();
                         break;
-
                     case ("2"):
                         Console.WriteLine("Введите пароль, пароль должен состоять из цифр");
                         userPassword = Convert.ToInt32(Console.ReadLine());
                         break;
-
                     case ("3"):
                         Console.WriteLine("Выберите цвет консоли\n1 красный цвет\n2 жёлтый цвет\n3 серый цвет");
                         consoleColor = Console.ReadLine();
@@ -55,7 +53,6 @@ namespace menu
                             break;
                         }                        
                         break;
-
                     case ("4"):
                         Console.WriteLine("Выберите высоту и ширину консоли");
                         consoleSize = Convert.ToInt32(Console.ReadLine());
