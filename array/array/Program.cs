@@ -13,7 +13,7 @@ namespace array
             int[,] array = new int [3,3];
             Random anyNumber = new Random();
             int productOfNumbers = 1;
-            int sum = 0;
+            int sumLine = 0;
 
             Console.WriteLine("Исходная матрица\n");
 
@@ -29,18 +29,18 @@ namespace array
 
             for (int i = 0; i < array.GetLength(0); i++)
             {
-                oneTask *= array[i, 0];
+                productOfNumbers *= array[i, 0];
             }
 
             for (int i = 0; i < array.GetLength(1); i++)
             {
-                sum += array[1, i];
+                sumLine += array[1, i];
             }
 
             Console.SetCursorPosition(0,6);
-            Console.WriteLine("Произведение первого столбца " + oneTask);
+            Console.WriteLine("Произведение первого столбца " + productOfNumbers);
             Console.SetCursorPosition(0, 8);
-            Console.WriteLine("Сумма второй строки " + sum);
+            Console.WriteLine("Сумма второй строки " + sumLine);
             Console.ReadKey();
         }
     }
