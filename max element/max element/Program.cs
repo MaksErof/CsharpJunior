@@ -24,6 +24,7 @@ namespace max_element
                 {
                     array[numberOfColumns, numbersOfLines] = anyNumber.Next(0, 101);
                     Console.Write(array[numberOfColumns, numbersOfLines] + " ");
+
                     if (maxElement < array[numberOfColumns, numbersOfLines])
                     {
                         maxElement = array[numberOfColumns, numbersOfLines];
@@ -34,8 +35,7 @@ namespace max_element
             }
 
             Console.Write("\nМаксимальный элемент в матрице равен:");
-            Console.WriteLine(maxElement + "\n");
-            
+            Console.WriteLine(maxElement + "\n");            
             Console.WriteLine("Изменённая матрица\n");
 
             for (numberOfColumns = 0; numberOfColumns < array.GetLength(0); numberOfColumns++)
@@ -46,8 +46,10 @@ namespace max_element
                     {
                         array[numberOfColumns, numbersOfLines] = 0;
                     }
+
                     Console.Write(array[numberOfColumns, numbersOfLines] + " ");
                 }
+
                 Console.WriteLine();
             }                      
             
