@@ -10,131 +10,159 @@ namespace dossier
     {
         static void Main(string[] args)
         {            
-            bool endFilling = true;          
-            string staffSurname;           
+            bool dossierFilling = true;
+            string staffSurname;
+            string staffName;
+            string staffPatronymic;
             string staffPosition;
-            string[] staffData = new string[1];
-            string[] employeePosition = new string[1];
+            string[] staffData = new string[2];
+            string[] employeePosition = new string[2];
             int staffForDelete;
             string surnameEmployee;
 
-            while (endFilling)
-            {                
+            while (dossierFilling)
+            {              
                 Console.Write("Для заполнения досье введите - 1, Вывести все досье - 2, Удалить досье - 3, Поиск по фамилии - 4, Выход - 5: ");
                 
                 switch (Console.ReadLine())
                 {
                     case "1":
                         Console.WriteLine();
-                        Console.Write("Введите фамилию, имя и отчество сотрудника: ");
-                        staffSurname = Console.ReadLine();                        
+                        Console.Write("Введите фамилию сотрудника: ");
+                        staffSurname = Console.ReadLine();
+                        Console.Write("Введите имя сотрудника: ");
+                        staffName = Console.ReadLine();
+                        Console.Write("Введите отчество сотрудника: ");
+                        staffPatronymic = Console.ReadLine();
                         Console.Write("Введите должность сотрудника: ");
                         staffPosition = Console.ReadLine();
 
-                        staffData = dataInput(staffData,ref employeePosition, staffSurname, staffPosition);
+                        InputData(ref staffData, staffSurname, staffName, staffPatronymic);
+                        InputPosition(ref employeePosition, staffPosition);
 
                         Console.WriteLine();
                         break;
                     case "2":
-                        Console.WriteLine();
+                        Console.Clear();                        
 
-                        showData(staffData, employeePosition);
+                        ShowData(staffData, employeePosition);
                         break;
                     case "3":
                         Console.Write("\nВведите номер досье для удаления: ");
                         staffForDelete = Convert.ToInt32(Console.ReadLine());
 
-                        staffData = dossierDeletion(staffData, ref employeePosition, staffForDelete);
+                        DeleteDossier(ref staffData, ref employeePosition, staffForDelete);
 
                         Console.WriteLine();
                         break;
                     case "4":
-                        Console.Write("\nКакого сотрудника вы хотите найти? Введите фамилию, имя и отчество: ");
+                        Console.Write("\nКакого сотрудника вы хотите найти? Введите фамилию: ");
                         surnameEmployee = Console.ReadLine();
-                        findEmployee(ref staffData, surnameEmployee);
+                        FindEmployee(staffData, employeePosition, surnameEmployee);
                         break;
                     case "5":
-                        endFilling = false;
+                        dossierFilling = false;
                         Console.WriteLine("Выход из редактора");
                         break;
                 }     
             }
         }
 
-       static string[] dataInput (string[] arraysOfStaff,ref string[] arraysOfPosition, string staffName, string staffPosition)
+       static void InputData (ref string[] arraysOfStaff, string surName, string name, string patronimyc)
        {            
-            string[] increasingTheArrayOfStaff = new string[arraysOfStaff.Length + 1];
-            string[] increasingTheArrayOfPosition = new string[arraysOfPosition.Length + 1];
+            string[] increasingTheArrayOfStaff = new string[arraysOfStaff.Length + 2];            
 
            for (int i = 0; i < arraysOfStaff.Length; i++)
             {               
                 if(arraysOfStaff[i] == null)
                 {
-                    arraysOfStaff[i] = staffName;
+                    arraysOfStaff[i] = surName;
+                    arraysOfStaff[i + 1] = " " + name + " " + patronimyc;
                 }                
                 increasingTheArrayOfStaff[i] = arraysOfStaff[i];
             }
-            arraysOfStaff = increasingTheArrayOfStaff;
+            arraysOfStaff = increasingTheArrayOfStaff;         
+       }
+        
+        static void InputPosition(ref string[] arraysOfPosition, string staffPosition)
+        {
+            string[] increasingTheArrayOfPosition = new string[arraysOfPosition.Length + 2];
 
-            for(int i = 0; i < arraysOfPosition.Length; i++)
+            for (int i = 0; i < arraysOfPosition.Length; i++)
             {
-                if (arraysOfPosition[i] == null)
+                if (arraysOfPosition[i] == null && i % 2 == 0)
                 {
                     arraysOfPosition[i] = staffPosition;
                 }
                 increasingTheArrayOfPosition[i] = arraysOfPosition[i];
             }
             arraysOfPosition = increasingTheArrayOfPosition;
+        }
 
-          return arraysOfStaff;
-       }
-
-        static void showData(string[] staffData,  string[] staffPosition)
+        static void ShowData(string[] staffData,  string[] staffPosition)
         {
             int numberPosition = 1;
             
             for (int i = 0; i < staffData.Length; i++)
-            {
-                if(i != staffPosition.Length - 1)
+            {                
+                if(i != staffData.Length - 2 && i % 2 == 0)
                 {
-                    Console.WriteLine(numberPosition++ +". " + staffData[i] + " - " + staffPosition[i]);
-                }                
+                    Console.WriteLine(numberPosition++ + ". " + staffData[i] + staffData[i+1] + " - " + staffPosition[i]);
+                }          
             }
             
         }
 
-        static string[] dossierDeletion (string[] dataToDelete, ref string[] positionToDelete, int numberDossier)
+        static void DeleteDossier (ref string[] dataToDelete, ref string[] positionToDelete, int numberDossier)
         {
-            numberDossier -= 1;
-            string[] newDataToStaff = new string[dataToDelete.Length - 1] ;
-            string[] newPositionStaff = new string[positionToDelete.Length - 1];
+            int numberPosition = 1;
+            int emptyValue = 1;
+            string[] newDataToStaff = new string[dataToDelete.Length - 2] ;
+            string[] newPositionStaff = new string[positionToDelete.Length - 2];
 
-            for(int i = 0; i < numberDossier; i++)
+            for (int i = 0; i < dataToDelete.Length; i++)
+            {               
+                if(i % 2 == 0)
+                {
+                    if (numberDossier == numberPosition && i % 2 == 0)
+                    {                        
+                        dataToDelete[i] = null; dataToDelete[i + 1] = null; positionToDelete[i] = null;
+                    }
+
+                    numberPosition++;
+                }
+                
+            }
+
+            for(int i = 0; i < newDataToStaff.Length - 2; i++)
             {
                 newDataToStaff[i] = dataToDelete[i];
                 newPositionStaff[i] = positionToDelete[i];
-            }
 
-            for(int i = numberDossier + 1;i < dataToDelete.Length; i ++)
-            {
-                newDataToStaff[i - 1] = dataToDelete[i];
-                newPositionStaff[i - 1] = positionToDelete[i];
+                if (emptyValue <= 2)
+                {
+                    if(dataToDelete[i] == null)
+                    {
+                        newDataToStaff[i] = dataToDelete[i + 2];
+                        newPositionStaff[i] = positionToDelete[i + 2];
+                        emptyValue++;
+                    }
+                }
             }
 
             dataToDelete = newDataToStaff;
-            positionToDelete = newPositionStaff;
-
-            return dataToDelete;
+            positionToDelete = newPositionStaff;            
         }
 
-        static void findEmployee(ref string[] array, string numberEmployee)
+        static void FindEmployee(string[] staffData, string[] staffPosition, string surnameEmployee)
         {
-            for(int i = 0;i< array.Length; i++)
+            int numberPosition = 1;
+            for(int i = 0;i< staffData.Length; i++)
             {
-                if(numberEmployee == array[i])
+                if(surnameEmployee == staffData[i] && i % 2 == 0)
                 {
-                    Console.WriteLine("Вы искали этого сотрудника " + array[i]);
-                }
+                    Console.Write("Вы искали этого сотрудника: " + numberPosition++ + ". " + staffData[i] + staffData[i + 1] + " - " + staffPosition[i] + "\n");
+                }               
             }
         }
 
