@@ -139,14 +139,11 @@ namespace dossier
                 newDataToStaff[i] = dataToDelete[i];
                 newPositionStaff[i] = positionToDelete[i];
 
-                if (emptyValue <= 2)
-                {
-                    if(dataToDelete[i] == null)
-                    {
+                if (emptyValue <= 2 && dataToDelete[i] == null)
+                {                  
                         newDataToStaff[i] = dataToDelete[i + 2];
                         newPositionStaff[i] = positionToDelete[i + 2];
-                        emptyValue++;
-                    }
+                        emptyValue++;                    
                 }
             }
 
