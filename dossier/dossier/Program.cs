@@ -17,10 +17,6 @@ namespace dossier
             string staffPosition;
             string[,] staffData = new string[1,3];
             string[] employeePosition = new string[1];
-            int staffForDelete;
-            string surnameEmployee;
-            string inputNumber;
-            bool checkOnFool = false;
             string numberOfCommand;
 
             while (dossierFilling)
@@ -28,8 +24,8 @@ namespace dossier
                 Console.Write("Для заполнения досье введите - 1, Вывести все досье - 2, Удалить досье - 3, Поиск по фамилии - 4, Выход - 5: ");
                 numberOfCommand = Console.ReadLine();
 
-                if (numberOfCommand == "1" || numberOfCommand == "2" || numberOfCommand == "3" || numberOfCommand == "4" || numberOfCommand == "5")
-                {
+               // if (numberOfCommand == "1" || numberOfCommand == "2" || numberOfCommand == "3" || numberOfCommand == "4" || numberOfCommand == "5")
+                //{
                     switch (numberOfCommand)
                     {
                         case "1":
@@ -43,8 +39,8 @@ namespace dossier
                             Console.Write("Введите должность сотрудника: ");
                             staffPosition = Console.ReadLine();
 
-                            InputData(ref staffData, staffSurname, staffName, staffPatronymic);
-                            InputPosition(ref employeePosition, staffPosition);
+                            AddData(ref staffData, staffSurname, staffName, staffPatronymic);
+                            AddPosition(ref employeePosition, staffPosition);
 
                             Console.WriteLine();
                             break;
@@ -54,6 +50,10 @@ namespace dossier
                             ShowData(staffData, employeePosition);
                             break;
                         case "3":
+                            int staffForDelete;
+                            string surnameEmployee;
+                            string inputNumber;
+                            bool checkOnFool = false;
 
                             while (checkOnFool == false)
                             {
@@ -66,7 +66,9 @@ namespace dossier
                                     DeleteDossier(ref staffData, ref employeePosition, staffForDelete);
                                 }
                                 else
+                                {
                                     Console.WriteLine("Введено неверное значение");
+                                }                                    
                             }
                             break;
                         case "4":
@@ -78,26 +80,28 @@ namespace dossier
                         case "5":
                             dossierFilling = false;
                             break;
+                        case null:
+                            Console.WriteLine("Ошибка");
+                            break;
                     }
-                }
-                else
-                    Console.Clear();
-                    Console.WriteLine("Введите правильную команду !");
+                //}
+               // else
+                 //   Console.Clear();
+              //      Console.WriteLine("Введите правильную команду !");
             }
         }
 
-       static void InputData (ref string[,] arraysOfStaff, string surName, string name, string patronimyc)
+       static void AddData (ref string[,] arraysOfStaff, string surName, string name, string patronimyc)
        {            
-            string[,] increasingTheArrayOfStaff = new string[arraysOfStaff.GetLength(0) + 1, 3];            
+            string[,] increasingTheArrayOfStaff = new string[arraysOfStaff.GetLength(0) + 1, 3];
+            arraysOfStaff[arraysOfStaff.GetLength(0) - 1, 0] = surName;
+            arraysOfStaff[arraysOfStaff.GetLength(0) - 1, 1] = name;
+            arraysOfStaff[arraysOfStaff.GetLength(0) - 1, 2] = patronimyc;
 
-            for(int i = 0; i < arraysOfStaff.GetLength(0); i++)
+            for (int i = 0; i < arraysOfStaff.GetLength(0); i++)
             {
                 for(int j = 0; j < arraysOfStaff.GetLength(1); j++)
                 {
-                    arraysOfStaff[arraysOfStaff.GetLength(0) - 1, arraysOfStaff.GetLength(1) - 3] = surName;
-                    arraysOfStaff[arraysOfStaff.GetLength(0) - 1, arraysOfStaff.GetLength(1) - 2] = name;
-                    arraysOfStaff[arraysOfStaff.GetLength(0) - 1, arraysOfStaff.GetLength(1) - 1] = patronimyc;
-
                     increasingTheArrayOfStaff[i, j] = arraysOfStaff[i, j];
                 }
             }
@@ -105,16 +109,13 @@ namespace dossier
             arraysOfStaff = increasingTheArrayOfStaff;    
        }
         
-        static void InputPosition(ref string[] arraysOfPosition, string staffPosition)
+        static void AddPosition(ref string[] arraysOfPosition, string staffPosition)
         {
             string[] increasingTheArrayOfPosition = new string[arraysOfPosition.Length + 1];
+            arraysOfPosition[arraysOfPosition.Length - 1] = staffPosition;
 
             for (int i = 0; i < arraysOfPosition.Length; i++)
             {
-                if (i == arraysOfPosition.Length - 1)
-                {
-                    arraysOfPosition[i] = staffPosition;
-                }
                 increasingTheArrayOfPosition[i] = arraysOfPosition[i];
             }
             arraysOfPosition = increasingTheArrayOfPosition;
@@ -175,19 +176,16 @@ namespace dossier
 
         static void FindEmployee(string[,] staffData, string[] staffPosition, string surnameEmployee)
         {            
-            int numberPosition = 0;            
+            int numberPosition = 0;
 
             for (int i = 0; i < staffData.GetLength(0) - 1; i++)
             {
                 numberPosition++;
 
-               for (int j = 0; j < staffData.GetLength(1); j++)
-               {
-                    if (surnameEmployee.ToLower() == staffData[i, j].ToLower())
-                    {
-                        Console.WriteLine(numberPosition + ". " + staffData[i, j] + " " + staffData[i,j + 1] + " "+ staffData[i,j + 2] + " - " + staffPosition[i]);
-                    }                   
-               }         
+                if (surnameEmployee.ToLower() == staffData[i, 0].ToLower())
+                {
+                    Console.WriteLine(numberPosition + ". " + staffData[i, 0] + " " + staffData[i, 1] + " " + staffData[i, 2] + " - " + staffPosition[i]);
+                }
             }
         }
     }
