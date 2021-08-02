@@ -24,8 +24,6 @@ namespace dossier
                 Console.Write("Для заполнения досье введите - 1, Вывести все досье - 2, Удалить досье - 3, Поиск по фамилии - 4, Выход - 5: ");
                 numberOfCommand = Console.ReadLine();
 
-               // if (numberOfCommand == "1" || numberOfCommand == "2" || numberOfCommand == "3" || numberOfCommand == "4" || numberOfCommand == "5")
-                //{
                     switch (numberOfCommand)
                     {
                         case "1":
@@ -80,14 +78,10 @@ namespace dossier
                         case "5":
                             dossierFilling = false;
                             break;
-                        case null:
-                            Console.WriteLine("Ошибка");
+                        default:
+                            Console.WriteLine("Ошибка, повторите ввод");
                             break;
-                    }
-                //}
-               // else
-                 //   Console.Clear();
-              //      Console.WriteLine("Введите правильную команду !");
+                    }               
             }
         }
 
@@ -123,13 +117,15 @@ namespace dossier
 
         static void ShowData(string[,] staffData,  string[] staffPosition)
         {
-            int numberPosition = 1;
+            int numberPosition = 0;
             
             for (int i = 0; i < staffData.GetLength(0); i++)
             {
+                numberPosition++;
+
                 if(staffData[i,0] != null)
                 {
-                    Console.Write(numberPosition++ + ". ");
+                    Console.Write(numberPosition + ". ");
 
                     for (int j = 0; j < staffData.GetLength(1); j++)
                     {
