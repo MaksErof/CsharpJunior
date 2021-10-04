@@ -10,17 +10,18 @@ namespace maps
     {
         static void Main(string[] args)
         {
-            bool IfPlaying = true;
+            bool isPlaying = true;
             char[,] map;
             char playerSymbol;
             int playerPositionX = 5, playerPositionY = 5;
             int playerMoveX = 0, playerMoveY = 0;
             Console.CursorVisible = false;
+            Console.CursorVisible = false;
 
             DrawMap(out map);
             DrawPlayer(out playerSymbol, playerPositionX, playerPositionY);
 
-            while (IfPlaying)
+            while (isPlaying)
             {
                 MovementOfPlayer(map, playerSymbol, ref playerPositionX, ref playerPositionY, playerMoveX, playerMoveY);
             }
