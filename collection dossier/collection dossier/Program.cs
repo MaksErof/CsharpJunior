@@ -101,7 +101,7 @@ namespace collection_dossier
 
                 while (!int.TryParse(Console.ReadLine(), out numberDossierForDelete))
                 {
-                    Console.WriteLine("Неверный ввод, введите число в меню которого хотите перейти:");
+                    Console.WriteLine("Неверный ввод, введите номер досье для удаления:");
                 }
 
                 if (numberDossierForDelete > dossierOfWorkers.Count || numberDossierForDelete < 0)
