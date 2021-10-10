@@ -13,11 +13,6 @@ namespace collection_dossier
             bool jobWithDossier = true;
             List<string> dossierOfWorkers = new List<string>();
             int userInput;
-            int numberDossierForDelete;
-            string surnameOfWorker;
-            string nameOfWorker;
-            string patronymicOfWorker;
-            string positionOfWorker;
 
             while (jobWithDossier)
             {
@@ -32,7 +27,7 @@ namespace collection_dossier
                 switch (userInput)
                 {
                     case (1):
-                        AddNewDossier(dossierOfWorkers,out surnameOfWorker,out nameOfWorker,out patronymicOfWorker,out positionOfWorker);
+                        AddNewDossier(dossierOfWorkers);
                         Console.Clear();
                         break;
 
@@ -41,7 +36,7 @@ namespace collection_dossier
                         break;
 
                     case (3):
-                        DeleteDossier(dossierOfWorkers,out numberDossierForDelete);
+                        DeleteDossier(dossierOfWorkers);
                         Console.Clear();
                         break;
 
@@ -52,9 +47,14 @@ namespace collection_dossier
             }
         }
 
-        static void AddNewDossier(List<string> dossierOfWorkers, out string surnameOfWorker,out string nameOfWorker,out string patronymicOfWorker,out string positionOfWorker)
+        static void AddNewDossier(List<string> dossierOfWorkers)
         {
+            string surnameOfWorker;
+            string nameOfWorker;
+            string patronymicOfWorker;
+            string positionOfWorker;
             string employeeData;
+
             Console.WriteLine("Введите поочерёдно, фамилию, имя, отчество, должность.");
             Console.Write("Фамилия:");
             surnameOfWorker = Console.ReadLine();
@@ -82,12 +82,21 @@ namespace collection_dossier
             Console.WriteLine();
         }
 
-        static void DeleteDossier(List<string> dossierOfWorkers, out int numberDossierForDelete)
+        static void DeleteDossier(List<string> dossierOfWorkers)
         {
+            int numberPosition;
+            int numberDossierForDelete;
             bool deleteDossier = true;
 
-            while (true)
+            while (deleteDossier)
             {
+                Console.WriteLine("База досье:");
+
+                for (numberPosition = 0; numberPosition < dossierOfWorkers.Count; numberPosition++)
+                {
+                    Console.WriteLine(numberPosition + 1 + "." + dossierOfWorkers[numberPosition]);
+                }
+
                 Console.Write("Введите номер досье которую хотите удалить:");
 
                 while (!int.TryParse(Console.ReadLine(), out numberDossierForDelete))
@@ -95,15 +104,15 @@ namespace collection_dossier
                     Console.WriteLine("Неверный ввод, введите число в меню которого хотите перейти:");
                 }
 
-                if (numberDossierForDelete <= dossierOfWorkers.Count)
+                if (numberDossierForDelete > dossierOfWorkers.Count || numberDossierForDelete < 0)
+                {
+                    Console.WriteLine("Введён не верный номер досье");
+                }
+
+                else
                 {
                     dossierOfWorkers.RemoveAt(numberDossierForDelete - 1);
                     break;
-                }
-
-                else if (numberDossierForDelete > dossierOfWorkers.Count)
-                {
-                    Console.WriteLine("Введён не верный номер досье");
                 }
             }
 
