@@ -10,11 +10,11 @@ namespace collection_dossier
     {
         static void Main(string[] args)
         {
-            bool jobWithDossier = true;
+            bool workWithDossier = true;
             List<string> dossierOfWorkers = new List<string>();
             int userInput;
 
-            while (jobWithDossier)
+            while (workWithDossier)
             {
                 Console.WriteLine("Работаем с досье, для добавления нового досье нажмите 1,\n" +
                     "чтобы вывести все досье введите 2, удалить досье 3, для выхода введите 4.");
@@ -41,7 +41,7 @@ namespace collection_dossier
                         break;
 
                     case (4):
-                        jobWithDossier = false;
+                        workWithDossier = false;
                         break;
                 }
             }
@@ -84,39 +84,39 @@ namespace collection_dossier
 
         static void DeleteDossier(List<string> dossierOfWorkers)
         {
-            int numberPosition;
             int numberDossierForDelete;
-            bool deleteDossier = true;
+            bool workWithDossier = true;
 
-            while (deleteDossier)
+            if (dossierOfWorkers.Count > 0)
             {
-                Console.WriteLine("База досье:");
-
-                for (numberPosition = 0; numberPosition < dossierOfWorkers.Count; numberPosition++)
+                while (workWithDossier)
                 {
-                    Console.WriteLine(numberPosition + 1 + "." + dossierOfWorkers[numberPosition]);
-                }
+                    Console.Write("Введите номер досье которую хотите удалить:");
 
-                Console.Write("Введите номер досье которую хотите удалить:");
+                    while (!int.TryParse(Console.ReadLine(), out numberDossierForDelete))
+                    {
+                        Console.WriteLine("Неверный ввод, введите номер досье для удаления:");
+                    }
 
-                while (!int.TryParse(Console.ReadLine(), out numberDossierForDelete))
-                {
-                    Console.WriteLine("Неверный ввод, введите номер досье для удаления:");
-                }
+                    if (numberDossierForDelete > dossierOfWorkers.Count || numberDossierForDelete < 0)
+                    {
+                        Console.WriteLine("Введён не верный номер досье");
+                    }
 
-                if (numberDossierForDelete > dossierOfWorkers.Count || numberDossierForDelete < 0)
-                {
-                    Console.WriteLine("Введён не верный номер досье");
-                }
+                    else
+                    {
+                        dossierOfWorkers.RemoveAt(numberDossierForDelete - 1);
+                        workWithDossier = false;
+                    }
 
-                else
-                {
-                    dossierOfWorkers.RemoveAt(numberDossierForDelete - 1);
-                    break;
+                    Console.WriteLine();
                 }
             }
-
-            Console.WriteLine();
+            else
+            {
+                Console.WriteLine("Нет досье для удаления");
+                Console.WriteLine("Для продолжения нажмите любую клавишу");
+            }
         }
     }
 }
