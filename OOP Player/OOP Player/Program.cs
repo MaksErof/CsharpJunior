@@ -10,10 +10,10 @@ namespace OOP_Player
     {
         static void Main(string[] args)
         {
-            Random rand = new Random();
-            int health = rand.Next(0,100);
-            int damage = rand.Next(20,50);
-            int armor = rand.Next(0,10);
+            Random randomNumber = new Random();
+            int health = randomNumber.Next(0,100);
+            int damage = randomNumber.Next(20,50);
+            int armor = randomNumber.Next(0,10);
 
             Player player = new Player(health, damage, armor);
             player.ShowStats();
@@ -24,20 +24,20 @@ namespace OOP_Player
 
     class Player
     {
-       private int Health;
-       private int Damage;
-       private int Armor;
+       private int _health;
+       private int _damage;
+       private int _armor;
         
         public Player(int health, int damage, int armor)
         {
-            Health = health;
-            Damage = damage;
-            Armor = armor;
+            _health = health;
+            _damage = damage;
+            _armor = armor;
         }
 
         public void ShowStats()
         {
-            Console.WriteLine($"ХП {Health}, Урон {Damage}, Броня {Armor}");
+            Console.WriteLine($"ХП {_health}, Урон {_damage}, Броня {_armor}");
         }
     }
 }
