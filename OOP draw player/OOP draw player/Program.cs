@@ -32,6 +32,7 @@ namespace OOP_draw_player
     {
         public int PositionX { get; private set; }
         public int PositionY { get; private set; }
+
         public Player(int x,int y)
         {
             PositionX = x;
