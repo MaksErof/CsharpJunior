@@ -11,9 +11,9 @@ namespace OOP_draw_player
         static void Main(string[] args)
         {
             RenderingPlayer rendering = new RenderingPlayer();
-            Player positionOfPlayer = new Player(55,15);
+            Player Player = new Player(55,15);
 
-            rendering.DrawPlayer(positionOfPlayer.PlayerX,positionOfPlayer.PlayerY);
+            rendering.DrawPlayer(Player.PositionX, Player.PositionY);
            
             Console.ReadKey();
         }
@@ -30,12 +30,12 @@ namespace OOP_draw_player
 
     class Player
     {
-        public int PlayerX { get; private set; }
-        public int PlayerY { get; private set; }
+        public int PositionX { get; private set; }
+        public int PositionY { get; private set; }
         public Player(int x,int y)
         {
-            PlayerX = x;
-            PlayerY = y;
+            PositionX = x;
+            PositionY = y;
         }
     }
 }
