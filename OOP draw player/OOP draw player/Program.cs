@@ -11,9 +11,9 @@ namespace OOP_draw_player
         static void Main(string[] args)
         {
             RenderingPlayer rendering = new RenderingPlayer();
-            Player Player = new Player(55,15);
+            Player UserPosition = new Player(55,15);
 
-            rendering.DrawPlayer(Player.PositionX, Player.PositionY);
+            rendering.Draw(UserPosition.PositionX, UserPosition.PositionY);
            
             Console.ReadKey();
         }
@@ -21,7 +21,7 @@ namespace OOP_draw_player
 
     class RenderingPlayer
     {
-        public void DrawPlayer(int x, int y, char playerSymbol = '*')
+        public void Draw(int x, int y, char playerSymbol = '*')
         {
             Console.SetCursorPosition(x, y);
             Console.Write(playerSymbol);
